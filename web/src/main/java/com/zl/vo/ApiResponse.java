@@ -32,6 +32,16 @@ public class ApiResponse<T> {
         return build(code,null,msg);
     }
 
+
+    @Override
+    public String toString() {
+        return "ApiResponse{" +
+                "code=" + code +
+                ", data=" + data +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
+
     public int getCode() {
         return code;
     }
