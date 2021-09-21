@@ -1,0 +1,15 @@
+db:
+  ds:
+    adm:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://10.13.3.189/evaluate_platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+      username: root
+      password: 57961GJI1q18t
+      poolName: one-hikari-pool
+      maximum: 5
+      minimum-idle: 2
+      connection-timeout: 5000
+      connection-test-query: select 1
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

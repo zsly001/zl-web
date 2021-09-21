@@ -15,7 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>domain</artifactId>
+            <artifactId>dao-mybatis</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
