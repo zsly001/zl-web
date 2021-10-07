@@ -1,9 +1,10 @@
 server:
   port: 6006
-
 spring:
   profiles:
     include: mysql-dev
   jackson:
     date-format: yyyy-MM-dd hh:mm:ss
     property-naming-strategy: SNAKE_CASE
+logging:
+  config: classpath:log4j2-rolling.xml

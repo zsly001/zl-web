@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" monitorInterval="10" >
+    <Properties>
+        <Property name="LOG_INFO_LEVEL" value="debug" />
+        <Property name="LOG_LAYOUT" value="%d [%t] %-5level %logger{0} - %msg%n" />
+        <Property name="LOG_HOME" value="./logs" />
+    </Properties>
+
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_LAYOUT}" />
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+
+        </Console>
+        <RollingFile name="INFO_FILE"
+                                 fileName="${LOG_HOME}/info.log"
+                                 filePattern="info-%d{yyyy-MM-dd HH-mm}-%i.log}">
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="${LOG_LAYOUT}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="1 MB" />
+            </Policies>
+        </RollingFile>
+        <RollingFile name="FILE_WK"
+                                 fileName="${LOG_HOME}/wk.log"
+                                 filePattern="wk-%d{yyyy-MM-dd}-%i.log"
+                                 immediateFlush="true">
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <PatternLayout pattern="%msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="${LOG_INFO_LEVEL}" >
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="INFO_FILE"/>
+
+        </Root>
+
+        <Logger name="wk">
+            <AppenderRef ref="FILE_WK"/>
+        </Logger>
+
+    </Loggers>
+
+</Configuration>
