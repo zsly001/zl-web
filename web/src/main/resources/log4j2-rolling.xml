@@ -16,7 +16,7 @@
         </Console>
         <RollingFile name="INFO_FILE"
                                  fileName="${LOG_HOME}/info.log"
-                                 filePattern="info-%d{yyyy-MM-dd HH-mm}-%i.log}">
+                                 filePattern="${LOG_HOME}/info-%d{yyyy-MM-dd HH-mm}-%i.log">
             <Filters>
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
@@ -31,7 +31,7 @@
                                  filePattern="wk-%d{yyyy-MM-dd}-%i.log"
                                  immediateFlush="true">
             <Filters>
-                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
             <PatternLayout pattern="%msg%n" />
             <Policies>
@@ -47,7 +47,7 @@
 
         </Root>
 
-        <Logger name="wk">
+        <Logger name="wk" additivity="false">
             <AppenderRef ref="FILE_WK"/>
         </Logger>
 
