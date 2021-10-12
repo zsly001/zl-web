@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--status 用于控制log42框架本身的日志级别,取值:trace,debug,info,warn,error,fatal
+monitorInterval 含义是每隔多少秒重新读取配置文件，可以不重启应用的情况下修改配置-->
+<Configuration status="" monitorInterval="" >
+
+    <!--自定义配置值-->
+    <Properties>
+        <Property name="" value="" />
+        <Property name="" value="" />
+    </Properties>
+
+    <!--输出源 用于定义日志输出的地方-->
+    <Appenders>
+        <!--控制台输出源-->
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="" />
+            <ThresholdFilter level="${LOG_INFO_LEVEL}" onMatch="ACCEPT" onMismatch="DENY"/>
+        </Console>
+
+        <!--文件输出源-->
+        <!--RandomAccessFileAppender类似于标准的 FileAppender， 除了它总是被缓冲（这不能被关闭），并且在内部它使用 ByteBuffer + RandomAccessFile 而不是 BufferedOutputStream。与FileAppender相比，我们在测量中看到“bufferedIO = true”，性能提升了20-200％-->
+        <RandomAccess>
+
+        </RandomAccess>
+
+        <!--滚动文件输出源,底层是一个OutputStreamAppender，它写入fileName参数中指定的File，并根据TriggeringPolicy和RolloverPolicy滚动文件-->
+        <RollingFile>
+
+        </RollingFile>
+
+        <!--RollingRandomAccessFile: 该输出源也是写入到文件，不同的是比File更加强大，可以指定当文件达到一定大小（如20MB）时，另起一个文件继续写入日志，另起一个文件就涉及到新文件的名字命名规则，因此需要配置文件命名规则。这种方式更加实用，因为你不可能一直往一个文件中写，如果一直写，文件过大，打开就会卡死，也不便于查找日志
+        RollingRandomAccessFileAppender类似于标准的 RollingFileAppender， 除了它总是被缓冲（这不能被关闭），并且在内部它使用ByteBuffer + RandomAccessFile 而不是BufferedOutputStream
+        RollingRandomAccessFileAppender写入fileName参数中指定的文件，并根据TriggeringPolicy和RolloverPolicy滚动文件-->
+        <RollingRandomAccessFile name="{指定Appender的名字}"
+                                 fileName="{定当前日志文件的位置和文件名称}"
+                                 filePattern="{指定当发生Rolling时，文件的转移和重命名规则,${FILE_NAME}-%d{yyyy-MM-dd HH-mm-ss}-%i，最小的时间粒度是ss，即秒钟}"
+                                 immediateFlush="{设置为true时 - 默认值，每次写入后都会进行刷新}"
+                                 bufferSize="{缓冲区大小,单位字节}"
+
+        >
+            <!--指定滚动日志的策略，就是什么时候进行新建日志文件输出日志-->
+            <Policies>
+                <!--指定当文件大小大于size指定的值时，触发Rolling-->
+                <SizeBasedTriggeringPolicy size="" />
+
+                <!--这个配置需要和filePattern结合使用，日期格式精确到哪一位，interval也精确到哪一个单位-->
+                <!--默认的size是1，结合起来就是每1秒钟生成一个新文件。如果改成%d{yyyy-MM-dd HH}，最小粒度为小时，则每一个小时生成一个文件-->
+                <TimeBasedTriggeringPolicy interval=""/>
+            </Policies>
+
+            <!--指定最多保存的文件个数-->
+            <DefaultRolloverStrategy max="" />
+
+            <!--Filters决定日志事件能否被输出,用于各个Appender中
+            过滤条件有三个值：ACCEPT(接受)，DENY(拒绝)，NEUTRAL(中立)-->
+            <!--onMatch="ACCEPT" 表示匹配该级别及以上
+            onMatch="DENY" 表示不匹配该级别及以上
+            onMatch="NEUTRAL" 表示该级别及以上的，由下一个filter处理，如果当前是最后一个，则表示匹配该级别及以上
+            onMismatch="ACCEPT" 表示匹配该级别以下
+            onMismatch="DENY" 表示不匹配该级别以下的
+            onMismatch="NEUTRAL" 表示该级别及以下的，由下一个filter处理，如果当前是最后一个，则不匹配该级别以下的-->
+            <Filters>
+                <ThresholdFilter level="" onMatch="" onMismatch="" />
+                <TimeFilter start="" end="" onMatch="" onMismatch="" />
+            </Filters>
+
+            <PatternLayout pattern="" />
+
+        </RollingRandomAccessFile>
+
+        <!--异步输出,AsyncAppender接受对其他Appender的引用，并使LogEvents在单独的Thread上写入它们,使用ArrayBlockingQueue-->
+        <Async>
+
+        </Async>
+
+        <!--文件输出源，用于将日志写入到指定的文件，其底层是一个OutputStreamAppender，需要配置输入到哪个位置-->
+        <!--name 指定Appender的名字;fileName：指定输出日志的目的文件带全路径的文件名-->
+        <File name="" fileName="" >
+            <PatternLayout pattern="" />
+        </File>
+
+    </Appenders>
+
+    <!--Root节点用来指定项目的根日志，如果没有单独指定Logger，那么就会默认使用该Root日志输出-->
+    <!--AppenderRef：Root的子节点，用来指定该日志输出到哪个Appender-->
+    <Loggers>
+        <!--每个配置都必须有一个根记录器Root。如果未配置，则将使用默认根LoggerConfig，其级别为ERROR且附加了Console appender-->
+        <!--根记录器和其他记录器之间的主要区别是：
+        1.根记录器没有name属性。2.根记录器不支持additivity属性，因为它没有父级-->
+        <Root level="" >
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+
+        <!--使用Logger元素必须有一个name属性，root logger不用name元属性-->
+        <!--如果未指定级别，则默认为ERROR-->
+        <!--可以为additivity属性分配值true或false。如果省略该属性，则将使用默认值true-->
+        <Logger>
+
+        </Logger>
+    </Loggers>
+
+</Configuration>
