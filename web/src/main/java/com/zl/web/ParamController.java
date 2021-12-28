@@ -1,6 +1,7 @@
 package com.zl.web;
 
 import com.zl.domain.po.adm.Role;
+import com.zl.domain.util.ClassLoaderUtils;
 import com.zl.dto.UserDTO;
 import com.zl.dto.UserRequest;
 import com.zl.vo.ApiResponse;
@@ -151,4 +152,13 @@ public class ParamController {
         return ApiResponse.ok(list.get(0));
     }
 
+
+    @GetMapping("/cld")
+    public ApiResponse<String> classloader(){
+
+        String hierarchy = ClassLoaderUtils.showClassLoaderHierarchy(random, "role", ",", "+");
+        log.info("{}",hierarchy);
+        return ApiResponse.ok("ok");
+
+    }
 }
