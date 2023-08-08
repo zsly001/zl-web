@@ -17,12 +17,30 @@ public class EasyTask {
     @Scheduled(cron="1/5 * * * * ?")
     public void send(){
 
-        System.out.println("run ..."+new Date());
-        String url = "http://10.222.76.204:6006/api/index";
+        System.out.println("T1-run ..."+new Date());
+        /*String url = "http://10.222.76.204:6006/api/index";
         ApiResponse response = restTemplate.getForObject(url, ApiResponse.class);
-        System.out.println("resp "+response);
+        System.out.println("resp "+response);*/
+        try {
+            Thread.sleep(1000*30);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
     }
+
+    /*@Scheduled(cron="1/5 * * * * ?")
+    public void send2(){
+
+        System.out.println("T2-run ..."+new Date());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+    }*/
 
 }
