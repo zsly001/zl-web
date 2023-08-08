@@ -2,9 +2,9 @@ db:
   ds:
     adm:
       driverClassName: com.mysql.cj.jdbc.Driver
-      jdbcUrl: jdbc:mysql://10.13.3.189/evaluate_platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+      jdbcUrl: jdbc:mysql://10.210.230.46:23306/evaluate_platform?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
       username: root
-      password: 57961GJI1q18t
+      password: trans-c0nt2Getf1
       poolName: one-hikari-pool
       maximum: 5
       minimum-idle: 2

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @RestController
@@ -18,14 +20,16 @@ public class IndexController {
     private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
     @GetMapping
-    public ApiResponse<String> index(){
+    public ApiResponse<String> index(HttpServletRequest request, HttpServletResponse response){
         System.out.println("request "+new Date());
-        return ApiResponse.ok();
+        StringBuilder sb = new StringBuilder();
+        sb.append("req:"+request).append(", ")
+                .append("resp:").append(response);
+        return ApiResponse.ok(sb.toString());
     }
 
     @GetMapping("/foo")
     public ApiResponse<String> foo(@RequestParam("value") String value){
-
         log.info("{}",value);
         return ApiResponse.ok();
     }
