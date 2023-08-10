@@ -1,8 +1,6 @@
 package com.zl.domain.algo.link;
 
-import com.zl.domain.algo.thd.ArrayLock2BLocking;
-import com.zl.domain.algo.thd.ArrayLockBlocking;
-import com.zl.domain.algo.thd.Blocking;
+import com.zl.domain.algo.thd.*;
 import com.zl.domain.util.Util;
 
 public class QueueTest {
@@ -10,7 +8,7 @@ public class QueueTest {
 
     public static void main(String[] args) {
 
-        final Blocking<Integer> q = new ArrayLockBlocking<>();
+        final Blocking<Integer> q = new LinkedSynBlocking<>();
         Runnable p = new Runnable() {
             @Override
             public void run() {
@@ -44,14 +42,14 @@ public class QueueTest {
         new Thread(c).start();
         new Thread(c).start();
 
-
-        /*for(int i=0;i<10;i++){
+        /*LinkedSynBlocking<Integer> q = new LinkedSynBlocking<>();
+        for(int i=0;i<100;i++){
             q.addTail(i);
         }
         while (!q.isEmpty()){
             System.out.println(q.takeHead());
-        }*/
-
+        }
+        System.out.println("size :"+q.size());*/
     }
 
 
