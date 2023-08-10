@@ -39,7 +39,10 @@ public abstract class LinkedBlocking<T> implements Blocking<T>{
         Node<T> tmp = head;
         T data = tmp.getData();
         head = tmp.getNext();
-        tmp = null;
+        if(null == head){
+            tail = head;
+        }
+        //tmp = null;
         size--;
         return data;
     }
