@@ -10,7 +10,7 @@ public class QueueTest {
 
     public static void main(String[] args) {
 
-        final Blocking<Integer> q = new LinkedSynBlocking<>();
+        final Blocking<Integer> q = new LinkedSyn2Blocking<>();
         //ArrayBlockingQueue q = new ArrayBlockingQueue(10);
         Runnable p = new Runnable() {
             @Override
@@ -34,7 +34,7 @@ public class QueueTest {
                 try {
                     while (true){
                         System.out.println(Thread.currentThread().getName()+" Take :"+ q.take());
-                        Util.sleep(10);
+                        Util.sleep(2);
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -43,6 +43,7 @@ public class QueueTest {
         };
 
         new Thread(p).start();
+        new Thread(c).start();
         new Thread(c).start();
 
         /*new Thread(new P(q)).start();
