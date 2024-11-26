@@ -13,9 +13,19 @@
 
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>org.example</groupId>
             <artifactId>dao-mybatis</artifactId>
+            <version>${project.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>dao-mybatis-plugs</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
